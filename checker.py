@@ -9,13 +9,17 @@ def log(text):
     s.write(now + ": " + text + "\n")
     s.close()
 
-sites =["https://google.com","https://wikipedia.org",
-                                "https://github.com",
-  "https://this-is-a-fake-and-broken-domain-123.com",
-               "https://broken-website-test-link.net"]
+f = open("sites.txt", "r")
+sites = f.readlines()
+f.close()
 
 
 for site in sites:
+    
+    site = site.strip()
+    if site == "":
+        continue
+
     try:
         response = requests.get(site)
     except:
